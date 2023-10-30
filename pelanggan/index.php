@@ -91,8 +91,8 @@
                            <thead class="table-success">
                               <tr>
                                  <th>No</th>
-                                 <th>Kode Pelanggan</th>
-                                 <th>Nama Pelanggan</th>
+                                 <th>Kode</th>
+                                 <th>Nama</th>
                                  <th>JK</th>
                                  <th>Alamat</th>
                                  <th>Telepon</th>
