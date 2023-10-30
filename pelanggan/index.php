@@ -47,14 +47,20 @@
    <div class="container">
       <div class="row mt-4">
          <div class="col-12">
-            <div class="alert alert-success fw-bold">
-               DATA PELANGGAN
-            </div>
+            <?php if (isset($_GET['alert']) && isset($_GET['alert']) == 1) { ?>
+               <div class="alert alert-success fw-bold">
+                  DATA BERHASIL DIPROSES!
+               </div>
+            <?php } else { ?>
+               <div class="alert alert-success fw-bold">
+                  DATA PELANGGAN
+               </div>
+            <?php } ?>
             <div class="row">
                <div class="col-md-4">
                   <div class="card">
                      <div class="card-body">
-                        <form action="" method="post">
+                        <form action="insert.php" method="post">
                            <div class="mb-2">
                               <label for="kode_pelanggan" class="form-label">Kode Pelanggan</label>
                               <input type="text" name="kode_pelanggan" id="kode_pelanggan" class="form-control" placeholder="Masukka kode pelanggan" required>
@@ -100,18 +106,25 @@
                               </tr>
                            </thead>
                            <tbody>
-                              <tr>
-                                 <td>1</td>
-                                 <td>P001</td>
-                                 <td>M. Iqbal Adenan</td>
-                                 <td>L</td>
-                                 <td>Jl. RTA Milono</td>
-                                 <td>085249099652</td>
-                                 <td>
-                                    <a href="" class="btn btn-sm btn-warning">Edit</a>
-                                    <a href="" class="btn btn-sm btn-danger">Hapus</a>
-                                 </td>
-                              </tr>
+                              <?php
+                              require_once "../config.php";
+                              $no = 1;
+                              $query = $conn->query("SELECT * FROM pelanggan ORDER BY id_plg DESC");
+                              foreach ($query as $data) :
+                              ?>
+                                 <tr>
+                                    <td><?= $no++; ?></td>
+                                    <td><?= $data['kode_plg'] ?></td>
+                                    <td><?= $data['nama_plg'] ?></td>
+                                    <td><?= $data['jk'] ?></td>
+                                    <td><?= $data['alamat'] ?></td>
+                                    <td><?= $data['telepon'] ?></td>
+                                    <td>
+                                       <a href="edit.php?id=<?= $data['id_plg'] ?>" class="btn btn-sm btn-warning">Edit</a>
+                                       <a href="" class="btn btn-sm btn-danger">Hapus</a>
+                                    </td>
+                                 </tr>
+                              <?php endforeach ?>
                            </tbody>
                         </table>
                      </div>
