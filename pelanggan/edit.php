@@ -78,8 +78,8 @@ if (isset($_GET['id'])) {
                     <label for="jk" class="form-label">Jenis Kelamin</label>
                     <select name="jk" class="form-select" id="jk">
                       <option disabled selected>Pilih Jenis Kelamin</option>
-                      <option value="L" <?= $restult['jk'] == "L" ? 'selected' : '' ?>>Laki-laki</option>
-                      <option value="P" <?= $restult['jk'] == "P" ? 'selected' : '' ?>>Perepmuan</option>
+                      <option value="L" <?= $result['jk'] == "L" ? 'selected' : '' ?>>Laki-laki</option>
+                      <option value="P" <?= $result['jk'] == "P" ? 'selected' : '' ?>>Perepmuan</option>
                     </select>
                   </div>
                   <div class="mb-2">
