@@ -79,7 +79,7 @@ if (isset($_GET['id'])) {
                     <select name="jk" class="form-select" id="jk">
                       <option disabled selected>Pilih Jenis Kelamin</option>
                       <option value="L" <?= $result['jk'] == "L" ? 'selected' : '' ?>>Laki-laki</option>
-                      <option value="P" <?= $result['jk'] == "P" ? 'selected' : '' ?>>Perepmuan</option>
+                      <option value="P" <?= $result['jk'] == "P" ? 'selected' : '' ?>>Perempuan</option>
                     </select>
                   </div>
                   <div class="mb-2">

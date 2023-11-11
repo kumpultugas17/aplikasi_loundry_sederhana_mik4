@@ -19,22 +19,22 @@
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  <a class="nav-link" aria-current="page" href="../index.php">Home</a>
                </li>
                <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                      Data Master
                   </a>
                   <ul class="dropdown-menu">
-                     <li><a class="dropdown-item" href="#">Pelanggan</a></li>
-                     <li><a class="dropdown-item" href="#">Paket Loundry</a></li>
+                     <li><a class="dropdown-item" href="index.php">Pelanggan</a></li>
+                     <li><a class="dropdown-item" href="../paket/index.php">Paket Loundry</a></li>
                   </ul>
                </li>
                <li class="nav-item">
-                  <a class="nav-link">Transaksi</a>
+                  <a href="../transaksi/transaksi.php" class="nav-link">Transaksi</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link">Riwayat Transaksi</a>
+                  <a href="../transaksi/index.php" class="nav-link">Riwayat Transaksi</a>
                </li>
             </ul>
             <div class="d-flex">
@@ -74,7 +74,7 @@
                               <select name="jk" class="form-select" id="jk">
                                  <option disabled selected>Pilih Jenis Kelamin</option>
                                  <option value="L">Laki-laki</option>
-                                 <option value="P">Perepmuan</option>
+                                 <option value="P">Perempuan</option>
                               </select>
                            </div>
                            <div class="mb-2">
@@ -121,7 +121,7 @@
                                     <td><?= $data['telepon'] ?></td>
                                     <td>
                                        <a href="edit.php?id=<?= $data['id_plg'] ?>" class="btn btn-sm btn-warning">Edit</a>
-                                       <a href="" class="btn btn-sm btn-danger">Hapus</a>
+                                       <a href="delete.php?id=<?= $data['id_plg'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah data akan dihapus?')">Hapus</a>
                                     </td>
                                  </tr>
                               <?php endforeach ?>
