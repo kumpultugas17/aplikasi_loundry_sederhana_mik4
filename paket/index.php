@@ -10,7 +10,7 @@
 </head>
 
 <body>
-   <nav class="navbar navbar-expand-lg bg-success bg-opacity-75">
+   <nav class="navbar navbar-expand-lg bg-success navbar-dark bg-opacity-75">
       <div class="container-fluid">
          <a class="navbar-brand" href="#">Apps</a>
          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,7 +65,7 @@
                               <tr>
                                  <th>No</th>
                                  <th>Nama Paket</th>
-                                 <th>Harga</th>
+                                 <th>Harga/kg</th>
                                  <th></th>
                               </tr>
                            </thead>
@@ -79,12 +79,41 @@
                                  <tr>
                                     <td><?= $no++; ?></td>
                                     <td><?= $data['nama_paket'] ?></td>
-                                    <td><?= $data['harga'] ?></td>
+                                    <td>Rp. <?= number_format($data['harga'], 0, ',', '.') ?></td>
                                     <td>
-                                       <a href="edit.php?id=<?= $data['id_paket'] ?>" class="btn btn-sm btn-warning">Edit</a>
+                                       <button data-bs-toggle="modal" data-bs-target="#edit<?= $data['id_paket'] ?>" class="btn btn-sm btn-warning">Edit</button>
                                        <a href="delete.php?id=<?= $data['id_paket'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah data akan dihapus?')">Hapus</a>
                                     </td>
                                  </tr>
+
+                                 <!-- Modal -->
+                                 <div class="modal fade" id="edit<?= $data['id_paket'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                       <div class="modal-content">
+                                          <div class="modal-header">
+                                             <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Data Paket</h1>
+                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          </div>
+                                          <form action="update.php" method="post">
+                                             <input type="hidden" name="id" value="<?= $data['id_paket'] ?>">
+                                             <div class="modal-body">
+                                                <div class="mb-2">
+                                                   <label for="nama_paket" class="form-label">Nama Paket</label>
+                                                   <input type="text" id="nama_paket" name="nama_paket" class="form-control" value="<?= $data['nama_paket'] ?>">
+                                                </div>
+                                                <div class="mb-2">
+                                                   <label for="harga" class="form-label">Harga</label>
+                                                   <input type="number" id="harga" name="harga" class="form-control" value="<?= $data['harga'] ?>">
+                                                </div>
+                                             </div>
+                                             <div class="modal-footer">
+                                                <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" name="submit" class="btn btn-sm btn-primary">Simpan</button>
+                                             </div>
+                                          </form>
+                                       </div>
+                                    </div>
+                                 </div>
                               <?php endforeach ?>
                            </tbody>
                         </table>

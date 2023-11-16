@@ -4,7 +4,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Apps Loundry - Pelanggan</title>
+   <title>Apps Loundry - Riwayat Transaksi</title>
    <!-- Import CSS Bootstrap -->
    <link rel="stylesheet" href="../assets_bootstrap/css/bootstrap.min.css">
 </head>
@@ -53,55 +53,25 @@
                </div>
             <?php } else { ?>
                <div class="alert alert-success fw-bold">
-                  DATA PELANGGAN
+                  RIWAYAT TRANSAKSI
                </div>
             <?php } ?>
             <div class="row">
-               <div class="col-md-4">
-                  <div class="card">
-                     <div class="card-body">
-                        <form action="insert.php" method="post">
-                           <div class="mb-2">
-                              <label for="kode_pelanggan" class="form-label">Kode Pelanggan</label>
-                              <input type="text" name="kode_pelanggan" id="kode_pelanggan" class="form-control" placeholder="Masukka kode pelanggan" required>
-                           </div>
-                           <div class="mb-2">
-                              <label for="nama_pelanggan" class="form-label">Nama Pelanggan</label>
-                              <input type="text" name="nama_pelanggan" id="nama_pelanggan" class="form-control" placeholder="Masukka nama pelanggan" required>
-                           </div>
-                           <div class="mb-2">
-                              <label for="jk" class="form-label">Jenis Kelamin</label>
-                              <select name="jk" class="form-select" id="jk">
-                                 <option disabled selected>Pilih Jenis Kelamin</option>
-                                 <option value="L">Laki-laki</option>
-                                 <option value="P">Perempuan</option>
-                              </select>
-                           </div>
-                           <div class="mb-2">
-                              <label for="alamat" class="form-label">Alamat</label>
-                              <textarea name="alamat" id="alamat" class="form-control" rows="4" required placeholder="Masukkan alamat lengkap"></textarea>
-                           </div>
-                           <div class="mb-2">
-                              <label for="telepon" class="form-label">Nomot Telepon</label>
-                              <input type="number" name="telepon" id="telepon" class="form-control" placeholder="Masukka nomor telepon" required>
-                           </div>
-                           <button type="submit" class="btn btn-success btn-sm" name="submit">Submit</button>
-                        </form>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-8">
+               <div class="col-md-12">
                   <div class="card">
                      <div class="card-body">
                         <table class="table table-striped table-hover">
                            <thead class="table-success">
                               <tr>
                                  <th>No</th>
-                                 <th>Kode</th>
-                                 <th>Nama</th>
-                                 <th>JK</th>
-                                 <th>Alamat</th>
+                                 <th>Tgl. Transaksi</th>
+                                 <th>Lama Pengerjaan</th>
+                                 <th>Nama Pelanggan</th>
                                  <th>Telepon</th>
+                                 <th>Nama Paket</th>
+                                 <th>Harga</th>
+                                 <th>Berat</th>
+                                 <th>Total</th>
                                  <th></th>
                               </tr>
                            </thead>
@@ -109,16 +79,21 @@
                               <?php
                               require_once "../config.php";
                               $no = 1;
-                              $query = $conn->query("SELECT * FROM pelanggan ORDER BY id_plg DESC");
+                              $query = $conn->query("SELECT * FROM transaksi t INNER JOIN pelanggan p ON p.id_plg = t.pelanggan_id INNER JOIN paket k ON k.id_paket = t.paket_id ORDER BY id_plg DESC");
                               foreach ($query as $data) :
+                                 $total = $data['harga'] * $data['berat'];
+
                               ?>
                                  <tr>
                                     <td><?= $no++; ?></td>
-                                    <td><?= $data['kode_plg'] ?></td>
+                                    <td><?= $data['tgl_transaksi'] ?></td>
+                                    <td><?= $data['lama_pengerjaan'] ?> hari</td>
                                     <td><?= $data['nama_plg'] ?></td>
-                                    <td><?= $data['jk'] ?></td>
-                                    <td><?= $data['alamat'] ?></td>
                                     <td><?= $data['telepon'] ?></td>
+                                    <td><?= $data['nama_paket'] ?></td>
+                                    <td><?= $data['harga'] ?></td>
+                                    <td><?= $data['berat'] ?></td>
+                                    <td><?= $total ?></td>
                                     <td>
                                        <a href="edit.php?id=<?= $data['id_plg'] ?>" class="btn btn-sm btn-warning">Edit</a>
                                        <a href="delete.php?id=<?= $data['id_plg'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah data akan dihapus?')">Hapus</a>

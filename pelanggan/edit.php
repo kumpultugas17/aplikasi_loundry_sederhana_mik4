@@ -20,7 +20,7 @@ if (isset($_GET['id'])) {
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg-success bg-opacity-75">
+  <nav class="navbar navbar-expand-lg bg-success navbar-dark bg-opacity-75">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Apps</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
